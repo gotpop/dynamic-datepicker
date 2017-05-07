@@ -15,7 +15,7 @@ let dateSelect = {
       let day = new Date(this.currentYear, this.currentMonth, this.currentDay + i)
       this.range.push(day)
     }
-    // console.log(this.range)
+
     console.log(dateSelect)
     dateSelect.buildDOM()
   },
@@ -42,6 +42,7 @@ let dateSelect = {
   },
   getSetCurrentDate: function() {
     dateSelect.currentYear = parseFloat(selectID3.options[selectID3.selectedIndex].value)
+    console.log('dateSelect.currentYear', dateSelect.currentYear);
     dateSelect.currentMonth = parseFloat(selectID2.options[selectID2.selectedIndex].value)
     dateSelect.currentDay = parseFloat(selectID1.options[selectID1.selectedIndex].value)
   },
@@ -67,7 +68,7 @@ let dateSelect = {
     }
     // If current year exists then set correct option
     for (let variable of selectID3) {
-      if (dateSelect.currentYear === variable.getAttribute('value')) {
+      if (dateSelect.currentYear === parseFloat(variable.getAttribute('value'))) {
         variable.setAttribute('selected', 'selected')
       }
     }
@@ -108,7 +109,6 @@ let dateSelect = {
 
     // loop set to create filtered options
     for (let optionMonth of groupedMonthObjects) {
-
       let createOption = document.createElement('option')
       let createText = document.createTextNode(optionMonth.monthNamed)
       let select1HTML = document.getElementById('selectID2')
@@ -116,12 +116,11 @@ let dateSelect = {
       createOption.setAttribute('value', optionMonth.monthNumber)
       createOption.appendChild(createText)
       select1HTML.appendChild(createOption)
-
     }
 
     // If current year exists then set correct option
     for (let thisOption of selectID2) {
-      if (dateSelect.currentMonth == thisOption.getAttribute('value')) {
+      if (dateSelect.currentMonth === parseFloat(thisOption.getAttribute('value'))) {
         thisOption.setAttribute('selected', 'selected')
       }
     }
