@@ -1,3 +1,7 @@
+require('file-loader?name=[name].[ext]!./index.html');
+require('file-loader?name=[name].[ext]!./favicon.ico');
+
+
 let dateSelect = {
   range: [],
   currentDay: '',
