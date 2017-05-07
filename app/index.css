@@ -1,9 +1,11 @@
-#wrap {
-  padding: 2rem;
-  background: pink
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-select {
-  display: inline-block;
-  margin: .5rem;
+.column {
+  display: flex;
+  justify-content: center;
 }
