@@ -15,8 +15,6 @@ export let dateSelect = {
       let day = new Date(this.currentYear, this.currentMonth, this.currentDay + i)
       this.range.push(day)
     }
-
-    console.log(dateSelect)
     this.buildDOM()
   },
   buildWrap: function() {
@@ -48,12 +46,10 @@ export let dateSelect = {
     createSelect.addEventListener('change', function() {
       dateSelect.getSetCurrentDate()
       dateSelect.buildDOM()
-      console.log(dateSelect)
     })
   },
   getSetCurrentDate: function() {
     this.currentYear = parseFloat(selectID3.options[selectID3.selectedIndex].value)
-    console.log('this.currentYear', this.currentYear);
     this.currentMonth = parseFloat(selectID2.options[selectID2.selectedIndex].value)
     this.currentDay = parseFloat(selectID1.options[selectID1.selectedIndex].value)
   },
@@ -97,7 +93,6 @@ export let dateSelect = {
     for (let i = 0; i < dateSelect.range.length; i++) {
       if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
         filteredDates.push(dateSelect.range[i])
-        console.log('Date range', dateSelect.currentYear)
       }
     }
     // Add values to sets - dedupe
@@ -179,5 +174,3 @@ export let dateSelect = {
     console.log(dateSelect)
   }
 }
-
-// dateSelect.buildDate()
