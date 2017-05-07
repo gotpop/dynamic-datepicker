@@ -43,10 +43,13 @@ let dateSelect = {
   },
   getSetCurrentDate: function() {
     console.log(dateSelect.currentMonthName, 'getSetCurrentDate()')
-    dateSelect.currentYear = selectID3.options[selectID3.selectedIndex].value
-    dateSelect.currentMonth = selectID2.options[selectID2.selectedIndex].value
+    let parseYear = parseFloat(selectID3.options[selectID3.selectedIndex].value)
+    dateSelect.currentYear = parseYear
+    let parseMonth = parseFloat(selectID2.options[selectID2.selectedIndex].value)
+    dateSelect.currentMonth = parseMonth
     dateSelect.currentMonthName = selectID2.options[selectID2.selectedIndex].text
-    dateSelect.currentDay = selectID1.options[selectID1.selectedIndex].value
+    let parseDay = parseFloat(selectID1.options[selectID1.selectedIndex].value)
+    dateSelect.currentDay = parseDay
   },
   buildYears: function() {
 
@@ -70,7 +73,7 @@ let dateSelect = {
     }
     // If current year exists then set correct option
     for (let variable of selectID3) {
-      if (dateSelect.currentYear == variable.getAttribute('value')) {
+      if (dateSelect.currentYear === variable.getAttribute('value')) {
         variable.setAttribute('selected', 'selected')
       }
     }
@@ -88,7 +91,9 @@ let dateSelect = {
 
     // Filter dates to correct year
     for (let i = 0; i < dateSelect.range.length; i++) {
-      if (dateSelect.range[i].getFullYear() == dateSelect.currentYear) {
+      console.log('dateSelect.range[i].getFullYear()', typeof dateSelect.range[i].getFullYear())
+      console.log('dateSelect.currentYear', typeof dateSelect.currentYear)
+      if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
           filteredDates.push(dateSelect.range[i])
           console.log('Date range', dateSelect.currentYear)
       }
@@ -97,7 +102,7 @@ let dateSelect = {
     for (let month of filteredDates) {
         optionMonthSet.add(month.getMonth())
         optionMonthNameSet.add(month.toLocaleString("en", { month: "long"  }))
-        console.log('filteredDates', filteredDates)
+        // console.log('filteredDates', filteredDates)
     }
     let arrayFromSet = [...optionMonthSet]
     let arrayFromSetNamed = [...optionMonthNameSet]
