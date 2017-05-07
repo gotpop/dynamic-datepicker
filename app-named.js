@@ -42,10 +42,10 @@ let dateSelect = {
     })
   },
   getSetCurrentDate: function() {
+    console.log(dateSelect.currentMonthName, 'getSetCurrentDate()')
     dateSelect.currentYear = selectID3.options[selectID3.selectedIndex].value
     dateSelect.currentMonth = selectID2.options[selectID2.selectedIndex].value
-    dateSelect.currentMonthNamed = selectID2.options[selectID2.selectedIndex].text
-    console.log(selectID2.options[selectID2.selectedIndex].text, 'testy')
+    dateSelect.currentMonthName = selectID2.options[selectID2.selectedIndex].text
     dateSelect.currentDay = selectID1.options[selectID1.selectedIndex].value
   },
   buildYears: function() {
@@ -78,6 +78,8 @@ let dateSelect = {
   },
   buildMonths: function() {
 
+    console.log(dateSelect.currentMonthName, 'buildMonths()')
+
     //Create sets and array
     let optionMonthSet = new Set()
     let optionMonthNameSet = new Set()
@@ -86,18 +88,22 @@ let dateSelect = {
 
     // Filter dates to correct year
     for (let i = 0; i < dateSelect.range.length; i++) {
-      if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
+      if (dateSelect.range[i].getFullYear() == dateSelect.currentYear) {
           filteredDates.push(dateSelect.range[i])
+          console.log('Date range', dateSelect.currentYear)
       }
     }
     // Add values to sets - dedupe
     for (let month of filteredDates) {
         optionMonthSet.add(month.getMonth())
         optionMonthNameSet.add(month.toLocaleString("en", { month: "long"  }))
+        console.log('filteredDates', filteredDates)
     }
-
     let arrayFromSet = [...optionMonthSet]
     let arrayFromSetNamed = [...optionMonthNameSet]
+
+    // console.log('optionMonthNameSet', optionMonthNameSet)
+    // console.log('arrayFromSetNamed', arrayFromSetNamed)
 
     for (var i = 0; i < arrayFromSet.length; i++) {
         let month = arrayFromSet[i]
@@ -109,7 +115,7 @@ let dateSelect = {
         groupedMonthObjects.push(groupedObject)
     }
 
-    console.log(groupedMonthObjects, 'groupedMonthObjects')
+    // console.log(groupedMonthObjects, 'groupedMonthObjects')
 
     // loop set to create filtered options
     for (let optionMonth of groupedMonthObjects) {
@@ -138,7 +144,7 @@ let dateSelect = {
     let optionDaySet = new Set()
     for (let date in this.range) {
 
-console.log(dateSelect.currentMonthNamed, 'named')
+    console.log(dateSelect.currentMonthName, 'buildDays()')
 
       if (dateSelect.currentMonth == dateSelect.range[date].getMonth()) {
         let dayFromSet = this.range[date].getDate()
