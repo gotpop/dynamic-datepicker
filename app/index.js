@@ -1,6 +1,6 @@
 require('file-loader?name=[name].[ext]!./index.html');
 require('file-loader?name=[name].[ext]!./favicon.ico');
-
+import './index.css'
 
 let dateSelect = {
   range: [],
