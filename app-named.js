@@ -2,26 +2,22 @@ let dateSelect = {
   range: [],
   currentDay: '',
   currentMonth: '',
+  currentMonthName: '',
   currentYear: '',
   buildDate: function() {
-    let maxDay = 32
+    let maxDay = 30
     let today = new Date()
-    let year = today.getFullYear()
-    let month = today.getMonth()
-    let date = today.getDate()
-// console.log(today.getDate());
-    this.currentDay = date
-    this.currentMonth = month
-    this.currentYear = year
-    console.log(  this.currentDay)
-    console.log(  this.currentMonth)
-    console.log(  this.currentYear)
+    this.currentDay = today.getDate()
+    this.currentMonth = today.getMonth()
+    this.currentMonthName = today.toLocaleString("en", { month: "long"  })
+    this.currentYear = today.getFullYear()
 
     for (let i = 0; i < maxDay; i++) {
-      let day = new Date(year, month, date + i)
+      let day = new Date(this.currentYear, this.currentMonth, this.currentDay + i)
       this.range.push(day)
     }
-    console.log(this.range);
+    // console.log(this.range)
+    console.log(dateSelect)
     dateSelect.buildDOM()
   },
   buildWrap: function() {
@@ -48,14 +44,15 @@ let dateSelect = {
   getSetCurrentDate: function() {
     dateSelect.currentYear = selectID3.options[selectID3.selectedIndex].value
     dateSelect.currentMonth = selectID2.options[selectID2.selectedIndex].value
-    console.log('sel', dateSelect.currentMonth)
+    dateSelect.currentMonthNamed = selectID2.options[selectID2.selectedIndex].text
+    console.log(selectID2.options[selectID2.selectedIndex].text, 'testy')
     dateSelect.currentDay = selectID1.options[selectID1.selectedIndex].value
   },
   buildYears: function() {
 
     //Create set then populate
     let optionYearSet = new Set()
-    for ( let date in this.range) {
+    for (let date in this.range) {
       let yearFromSet = this.range[date].getFullYear()
       optionYearSet.add(yearFromSet)
     }
@@ -81,28 +78,52 @@ let dateSelect = {
   },
   buildMonths: function() {
 
-    //Create set then populate
+    //Create sets and array
     let optionMonthSet = new Set()
-    for ( let date in this.range) {
-      if (dateSelect.currentYear == dateSelect.range[date].getFullYear() ) {
-        let monthFromSet = this.range[date].getMonth()
-        optionMonthSet.add(monthFromSet)
-        console.log('monthFromSet: ', monthFromSet)
+    let optionMonthNameSet = new Set()
+    let filteredDates = new Array
+    let groupedMonthObjects = new Array
+
+    // Filter dates to correct year
+    for (let i = 0; i < dateSelect.range.length; i++) {
+      if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
+          filteredDates.push(dateSelect.range[i])
       }
     }
+    // Add values to sets - dedupe
+    for (let month of filteredDates) {
+        optionMonthSet.add(month.getMonth())
+        optionMonthNameSet.add(month.toLocaleString("en", { month: "long"  }))
+    }
+
+    let arrayFromSet = [...optionMonthSet]
+    let arrayFromSetNamed = [...optionMonthNameSet]
+
+    for (var i = 0; i < arrayFromSet.length; i++) {
+        let month = arrayFromSet[i]
+        let monthNamed = arrayFromSetNamed[i]
+        let groupedObject = new Object
+
+        groupedObject.monthNumber = month
+        groupedObject.monthNamed = monthNamed
+        groupedMonthObjects.push(groupedObject)
+    }
+
+    console.log(groupedMonthObjects, 'groupedMonthObjects')
 
     // loop set to create filtered options
-    for (let optionMonth of optionMonthSet) {
+    for (let optionMonth of groupedMonthObjects) {
 
       let createOption = document.createElement('option')
-      let createText = document.createTextNode(optionMonth)
+      let createText = document.createTextNode(optionMonth.monthNamed)
       let select1HTML = document.getElementById('selectID2')
 
-      createOption.setAttribute('value', optionMonth)
+      createOption.setAttribute('value', optionMonth.monthNumber)
       createOption.appendChild(createText)
       select1HTML.appendChild(createOption)
 
     }
+
     // If current year exists then set correct option
     for (let thisOption of selectID2) {
       if (dateSelect.currentMonth == thisOption.getAttribute('value')) {
@@ -115,12 +136,13 @@ let dateSelect = {
 
     //Create set then populate
     let optionDaySet = new Set()
-    for ( let date in this.range) {
+    for (let date in this.range) {
 
-      if (dateSelect.currentMonth == dateSelect.range[date].getMonth() ) {
+console.log(dateSelect.currentMonthNamed, 'named')
+
+      if (dateSelect.currentMonth == dateSelect.range[date].getMonth()) {
         let dayFromSet = this.range[date].getDate()
         optionDaySet.add(dayFromSet)
-        console.log('dayFromSet: ', dayFromSet)
       }
 
     }
@@ -138,11 +160,11 @@ let dateSelect = {
 
     }
     // If current year exists then set correct option
-      for (let thisOption of selectID1) {
-        if (dateSelect.currentDay == thisOption.getAttribute('value')) {
-          thisOption.setAttribute('selected', 'selected')
-        }
+    for (let thisOption of selectID1) {
+      if (dateSelect.currentDay == thisOption.getAttribute('value')) {
+        thisOption.setAttribute('selected', 'selected')
       }
+    }
 
   },
   buildDOM: function() {
@@ -150,8 +172,8 @@ let dateSelect = {
     dateSelect.buildWrap()
     dateSelect.buildYears()
     dateSelect.buildMonths()
-    console.log('cm: ', dateSelect.currentMonth)
     dateSelect.buildDays()
+    console.log(dateSelect)
   }
 }
 
