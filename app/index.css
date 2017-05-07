@@ -1,0 +1,9 @@
+#wrap {
+  padding: 2rem;
+  background: pink
+}
+
+select {
+  display: inline-block;
+  margin: .5rem;
+}

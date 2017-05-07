@@ -1,6 +1,8 @@
 require('file-loader?name=[name].[ext]!./index.html');
 require('file-loader?name=[name].[ext]!./favicon.ico');
-import './index.css'
+require('file-loader?name=[name].[ext]!./index.css');
+require('file-loader?name=[name].[ext]!./bulma.css');
+// import './date.js'
 
 let dateSelect = {
   range: [],

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "A dynamic date picker",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "wp": "webpack --watch",
+    "postinstall": "webpack-dev-server"
   },
   "dependencies": {
     "bulma": "^0.4.0",
