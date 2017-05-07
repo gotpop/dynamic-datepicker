@@ -1,0 +1,9 @@
+{
+  "name": "basic",
+  "version": "1.0.0",
+  "description": "Basic",
+  "scripts": {
+    "dev": "python -m http.server 7777",
+    "postinstall": "touch index.html favicon.ico style.css app.js && npm run dev && atom ."
+  }
+}
