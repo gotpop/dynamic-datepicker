@@ -172,4 +172,4 @@ let dateSelect = {
   }
 }
 
-// dateSelect.buildDate()
+dateSelect.buildDate()
