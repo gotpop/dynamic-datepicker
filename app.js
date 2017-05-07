@@ -1,196 +1,158 @@
 let dateSelect = {
-    range: [],
-    today: new Date(),
-    dynamicDateSets: {},
-    dynamicDateArrays: {},
-    maxDay: 30,
-    daysSet: new Set(),
-    monthsSet: new Set(),
-    yearsSet: new Set(),
-    dropDayValue: '',
-    dropMonthValue: '',
-    dropYearValue: '',
-    daysArray: '',
-    monthsArray: '',
-    yearsArray: '',
-    currentDay: '',
-    currentMonth: '',
-    currentYear: '',
-    buildDate: function() {
-        let year = this.today.getFullYear()
-        let month = this.today.getMonth()
-        let date = this.today.getDate()
+  range: [],
+  currentDay: '',
+  currentMonth: '',
+  currentYear: '',
+  buildDate: function() {
+    let maxDay = 32
+    let today = new Date()
+    let year = today.getFullYear()
+    let month = today.getMonth()
+    let date = today.getDate()
+// console.log(today.getDate());
+    this.currentDay = date
+    this.currentMonth = month
+    this.currentYear = year
+    console.log(  this.currentDay)
+    console.log(  this.currentMonth)
+    console.log(  this.currentYear)
 
-        for (let i = 0; i < this.maxDay; i++) {
-            let day = new Date(year, month + 1, date + i)
-            this.range.push(day)
-        }
-    },
-    buildRange: function() {
-        for (let i in this.range) {
-            let thisDay = this.range[i].getDate()
-            let thisMonth = this.range[i].getMonth()
-            let thisYear = this.range[i].getFullYear()
-            this.daysSet.add(thisDay)
-            this.monthsSet.add(thisMonth)
-            this.yearsSet.add(thisYear)
-        }
-    },
-    buildObject: function() {
+    for (let i = 0; i < maxDay; i++) {
+      let day = new Date(year, month, date + i)
+      this.range.push(day)
+    }
+    console.log(this.range);
+    dateSelect.buildDOM()
+  },
+  buildWrap: function() {
 
-        this.buildDate()
-        this.buildRange()
+    let createWrap = document.createElement('form')
+    createWrap.setAttribute('id', 'wrap')
 
-        this.daysArray = Array.from([...this.daysSet])
-        this.monthsArray = Array.from([...this.monthsSet])
-        this.yearsArray = Array.from([...this.yearsSet])
+    for (let i = 0; i < 3; i++) {
+      let adjustedIndex = i + 1
+      let createSelect = document.createElement('select')
+      createSelect.setAttribute('id', 'selectID' + adjustedIndex)
+      createWrap.appendChild(createSelect)
+      dateSelect.addListener(createSelect)
+    }
+    document.body.appendChild(createWrap)
+  },
+  addListener: function(createSelect) {
+    createSelect.addEventListener('change', function() {
+      dateSelect.getSetCurrentDate()
+      dateSelect.buildDOM()
+      console.log(dateSelect)
+    })
+  },
+  getSetCurrentDate: function() {
+    dateSelect.currentYear = selectID3.options[selectID3.selectedIndex].value
+    dateSelect.currentMonth = selectID2.options[selectID2.selectedIndex].value
+    console.log('sel', dateSelect.currentMonth)
+    dateSelect.currentDay = selectID1.options[selectID1.selectedIndex].value
+  },
+  buildYears: function() {
 
-        this.dynamicDateSets.years = new Object
-        this.dynamicDateSets.months = new Object
-        this.dynamicDateSets.days = new Set()
+    //Create set then populate
+    let optionYearSet = new Set()
+    for ( let date in this.range) {
+      let yearFromSet = this.range[date].getFullYear()
+      optionYearSet.add(yearFromSet)
+    }
+    // loop set to create filtered options
+    for (let optionYear of optionYearSet) {
 
-        this.dynamicDateArrays.years = new Object
-        this.dynamicDateArrays.months = new Object
-        this.dynamicDateArrays.days = new Array
+      let createOption = document.createElement('option')
+      let createText = document.createTextNode(optionYear)
+      let select2HTML = document.getElementById('selectID3')
 
-        for (let yearObject of this.yearsArray) {
-            this.dynamicDateSets.months[yearObject] = new Set()
-            this.dynamicDateArrays.months[yearObject] = new Array
-        }
-        this.dynamicDateArrays.years[`allYears`] = this.yearsArray
-
-        for (let dayObject of this.range) {
-            for (let yearObject of this.yearsArray) {
-                if (dayObject.getFullYear() === yearObject) {
-
-                    let createDynamicProperty = this.dynamicDateSets.months[yearObject]
-                    this.dynamicDateSets.months[yearObject].add(dayObject.getMonth())
-
-                    // let createArrayFromSet = Array.from([...createDynamicProperty])
-                    // this.dynamicDateArrays.months[yearObject] = createArrayFromSet
-
-                }
-            }
-            this.dynamicDateSets.days.add(dayObject.getDate())
-
-            //////////////////////////////////////////////
-            // Day object
-            //////////////////////////////////////////////
-
-            for (let monthObject of this.monthsArray) {
-                if (dayObject.getMonth() === monthObject) {
-
-                    let createDynamicProperty = this.dynamicDateSets.days[monthObject]
-                    this.dynamicDateSets.days.add(dayObject.getDate())
-
-                    let newObject = new Object
-                    // newObject.date = createArrayFromSet
-                    newObject.thisIsInMonth = monthObject
-                    // console.log('createArrayFromSet: ', createArrayFromSet)
-                    this.dynamicDateArrays.days.push(newObject)
-
-                }
-            }
-            for (let daysObject of this.dynamicDateSets.days) {
-              if (dayObject.getDate() === daysObject) {
-
-              }
-            }
-
-
-        }
-        console.log('this.dynamicDateSets', this.dynamicDateSets)
-        console.log('this.dynamicDateArrays', this.dynamicDateArrays)
-    },
-    buildWrap: function() {
-        let createWrap = document.createElement('div')
-        createWrap.setAttribute('id', 'wrap')
-
-        for (let i = 0; i < 3; i++) {
-            let createSelect = document.createElement('select')
-            createSelect.setAttribute('id', 'drop' + i)
-            createWrap.appendChild(createSelect)
-            // console.log('This is', createSelect)
-            createSelect.addEventListener('change', function() {
-                console.log('DOM changed')
-                this.dropMonthValue = "hello"
-                console.log('dropMonthValue: ', this.dropMonthValue)
-                this.buildDOM()
-
-            })
-        }
-        document.body.appendChild(createWrap)
-    },
-    buildYears: function() {
-        for (let i of this.dynamicDateArrays.years.allYears) {
-            let createOption = document.createElement('option')
-            createOption.setAttribute('value', i)
-            let createText = document.createTextNode(i)
-            createOption.appendChild(createText)
-            drop2.appendChild(createOption)
-            this.currentYear = i
-            console.log('currentYear: ', this.currentYear)
-        }
-    },
-    buildMonths: function() {
-        for (let yearIndex in this.dynamicDateArrays.months) {
-            if (yearIndex == this.dynamicDateArrays.years.allYears[0]) {
-                for (i of this.dynamicDateArrays.months[yearIndex]) {
-                    let createOption = document.createElement('option')
-                    createOption.setAttribute('value', i)
-                    let createText = document.createTextNode(i)
-                    createOption.appendChild(createText)
-                    drop1.appendChild(createOption)
-                    this.currentMonth = i
-                    console.log('currentMonth: ', this.currentMonth)
-                }
-            }
-        }
-    },
-    buildDays: function() {
-
-        for (i of this.dynamicDateArrays.days) {
-          if (i.thisIsInMonth == this.currentMonth) {
-            // if (i == 1) {
-            //   this.currentDay = i
-            // }
-            console.log('currentDay!: ', i)
-            let createOption = document.createElement('option')
-            let createText = document.createTextNode(i)
-            createOption.appendChild(createText)
-            drop0.appendChild(createOption)
-          }
-        }
-
-    },
-    // getCurrentValues: function(currentValue) {
-    //   let htmlOption0 = document.getElementById('drop0').firstChild
-    //   let htmlOptionValue0 = htmlOption0.getAttribute('value')
-    //
-    //   this.currentDay = htmlOptionValue0
-    //
-    //   let htmlOption1 = document.getElementById('drop1').firstChild
-    //   let htmlOptionValue1 = htmlOption1.getAttribute('value')
-    //
-    //   this.currentMonth = htmlOptionValue1
-    //
-    //   let htmlOption2 = document.getElementById('drop2').firstChild
-    //   let htmlOptionValue2 = htmlOption2.getAttribute('value')
-    //
-    //   this.currentYear = htmlOptionValue2
-    //
-    // },
-    buildDOM: function() {
-        document.body.innerHTML = ''
-        this.buildWrap()
-        this.buildYears()
-        this.buildMonths()
-        this.buildDays()
-        // this.getCurrentValues()
-        // console.log('Built range!', this.range)
+      createOption.setAttribute('value', optionYear)
+      createOption.appendChild(createText)
+      select2HTML.appendChild(createOption)
 
     }
+    // If current year exists then set correct option
+    for (let variable of selectID3) {
+      if (dateSelect.currentYear == variable.getAttribute('value')) {
+        variable.setAttribute('selected', 'selected')
+      }
+    }
+
+  },
+  buildMonths: function() {
+
+    //Create set then populate
+    let optionMonthSet = new Set()
+    for ( let date in this.range) {
+      if (dateSelect.currentYear == dateSelect.range[date].getFullYear() ) {
+        let monthFromSet = this.range[date].getMonth()
+        optionMonthSet.add(monthFromSet)
+        console.log('monthFromSet: ', monthFromSet)
+      }
+    }
+
+    // loop set to create filtered options
+    for (let optionMonth of optionMonthSet) {
+
+      let createOption = document.createElement('option')
+      let createText = document.createTextNode(optionMonth)
+      let select1HTML = document.getElementById('selectID2')
+
+      createOption.setAttribute('value', optionMonth)
+      createOption.appendChild(createText)
+      select1HTML.appendChild(createOption)
+
+    }
+    // If current year exists then set correct option
+    for (let thisOption of selectID2) {
+      if (dateSelect.currentMonth == thisOption.getAttribute('value')) {
+        thisOption.setAttribute('selected', 'selected')
+      }
+    }
+
+  },
+  buildDays: function() {
+
+    //Create set then populate
+    let optionDaySet = new Set()
+    for ( let date in this.range) {
+
+      if (dateSelect.currentMonth == dateSelect.range[date].getMonth() ) {
+        let dayFromSet = this.range[date].getDate()
+        optionDaySet.add(dayFromSet)
+        console.log('dayFromSet: ', dayFromSet)
+      }
+
+    }
+
+    // loop set to create filtered options
+    for (let optionDay of optionDaySet) {
+
+      let createOption = document.createElement('option')
+      let createText = document.createTextNode(optionDay)
+      let select0HTML = document.getElementById('selectID1')
+
+      createOption.setAttribute('value', optionDay)
+      createOption.appendChild(createText)
+      select0HTML.appendChild(createOption)
+
+    }
+    // If current year exists then set correct option
+      for (let thisOption of selectID1) {
+        if (dateSelect.currentDay == thisOption.getAttribute('value')) {
+          thisOption.setAttribute('selected', 'selected')
+        }
+      }
+
+  },
+  buildDOM: function() {
+    document.body.innerHTML = ''
+    dateSelect.buildWrap()
+    dateSelect.buildYears()
+    dateSelect.buildMonths()
+    console.log('cm: ', dateSelect.currentMonth)
+    dateSelect.buildDays()
+  }
 }
 
-dateSelect.buildObject()
-dateSelect.buildDOM()
+dateSelect.buildDate()
