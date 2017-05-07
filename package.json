@@ -8,13 +8,14 @@
     "build": "shx rm -rf public/** && NODE_ENV=production webpack -p --progress"
   },
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
     "bulma": "^0.4.0",
-    "font-awesome": "^4.7.0",
-    "css-loader": "^0.25.0",
-    "sass-loader": "^4.0.2",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.4",
     "extract-text-webpack-plugin": "^2.1.0",
+    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.0",
     "sass-loader": "^6.0.3",
