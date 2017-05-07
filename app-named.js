@@ -4,7 +4,7 @@ let dateSelect = {
   currentMonth: '',
   currentYear: '',
   buildDate: function() {
-    let maxDay = 30
+    let maxDay = 300
     let today = new Date()
     this.currentDay = today.getDate()
     this.currentMonth = today.getMonth()
@@ -41,12 +41,9 @@ let dateSelect = {
     })
   },
   getSetCurrentDate: function() {
-    let parseYear = parseFloat(selectID3.options[selectID3.selectedIndex].value)
-    let parseMonth = parseFloat(selectID2.options[selectID2.selectedIndex].value)
-    let parseDay = parseFloat(selectID1.options[selectID1.selectedIndex].value)
-    dateSelect.currentYear = parseYear
-    dateSelect.currentMonth = parseMonth
-    dateSelect.currentDay = parseDay
+    dateSelect.currentYear = parseFloat(selectID3.options[selectID3.selectedIndex].value)
+    dateSelect.currentMonth = parseFloat(selectID2.options[selectID2.selectedIndex].value)
+    dateSelect.currentDay = parseFloat(selectID1.options[selectID1.selectedIndex].value)
   },
   buildYears: function() {
 
