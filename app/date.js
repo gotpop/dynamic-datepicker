@@ -1,4 +1,4 @@
-let dateSelect = {
+export let dateSelect = {
   range: [],
   currentDay: '',
   currentMonth: '',
@@ -168,4 +168,4 @@ let dateSelect = {
   }
 }
 
-dateSelect.buildDate()
+// dateSelect.buildDate()
