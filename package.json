@@ -5,6 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "wp": "webpack --watch",
+    "gh": "git subtree push --prefix dist origin gh-pages",
     "postinstall": "webpack-dev-server"
   },
   "dependencies": {
