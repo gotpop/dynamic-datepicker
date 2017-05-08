@@ -1,6 +1,8 @@
 export let buildDays = function(dateSelect) {
+
   //Create set then populate
   let optionDaySet = new Set()
+
   for (let date in dateSelect.range) {
 
     if (dateSelect.currentMonth == dateSelect.range[date].getMonth()) {
@@ -22,10 +24,12 @@ export let buildDays = function(dateSelect) {
     select0HTML.appendChild(createOption)
 
   }
+
   // If current year exists then set correct option
   for (let thisOption of selectID1) {
     if (dateSelect.currentDay === parseFloat(thisOption.getAttribute('value'))) {
       thisOption.setAttribute('selected', 'selected')
     }
   }
+
 }

@@ -1,4 +1,5 @@
 export let buildWrap = function(dateSelect) {
+
     let createWrap = document.createElement('form')
     createWrap.setAttribute('class', 'columns')
 
@@ -20,6 +21,9 @@ export let buildWrap = function(dateSelect) {
       createSpan.appendChild(createSelect)
       createWrap.appendChild(createP)
       dateSelect.addListener(createSelect)
+
     }
+
     document.body.appendChild(createWrap)
+
   }

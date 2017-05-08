@@ -144,8 +144,10 @@ module.exports = __webpack_require__.p + "index.html";
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildDate; });
 let buildDate = function(dateSelect) {
+
   let maxDay = 300
   let today = new Date()
+
   dateSelect.currentDay = today.getDate()
   dateSelect.currentMonth = today.getMonth()
   dateSelect.currentMonthName = today.toLocaleString("en", {month: "long"})
@@ -155,7 +157,9 @@ let buildDate = function(dateSelect) {
     let day = new Date(dateSelect.currentYear, dateSelect.currentMonth, dateSelect.currentDay + i)
     dateSelect.range.push(day)
   }
+
   dateSelect.buildDOM()
+
 }
 
 
@@ -166,8 +170,10 @@ let buildDate = function(dateSelect) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildDays; });
 let buildDays = function(dateSelect) {
+
   //Create set then populate
   let optionDaySet = new Set()
+
   for (let date in dateSelect.range) {
 
     if (dateSelect.currentMonth == dateSelect.range[date].getMonth()) {
@@ -189,12 +195,14 @@ let buildDays = function(dateSelect) {
     select0HTML.appendChild(createOption)
 
   }
+
   // If current year exists then set correct option
   for (let thisOption of selectID1) {
     if (dateSelect.currentDay === parseFloat(thisOption.getAttribute('value'))) {
       thisOption.setAttribute('selected', 'selected')
     }
   }
+
 }
 
 
@@ -206,53 +214,56 @@ let buildDays = function(dateSelect) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildMonths; });
 let buildMonths = function(dateSelect) {
 
-      //Create sets and array
-      let optionMonthSet = new Set()
-      let optionMonthNameSet = new Set()
-      let filteredDates = new Array
-      let groupedMonthObjects = new Array
+  //Create sets and array
+  let optionMonthSet = new Set()
+  let optionMonthNameSet = new Set()
+  let filteredDates = new Array
+  let groupedMonthObjects = new Array
 
-      // Filter dates to correct year
-      for (let i = 0; i < dateSelect.range.length; i++) {
-        if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
-          filteredDates.push(dateSelect.range[i])
-        }
-      }
-      // Add values to sets - dedupe
-      for (let month of filteredDates) {
-        optionMonthSet.add(month.getMonth())
-        optionMonthNameSet.add(month.toLocaleString("en", {month: "long"}))
-      }
-      let arrayFromSet = [...optionMonthSet]
-      let arrayFromSetNamed = [...optionMonthNameSet]
+  // Filter dates to correct year
+  for (let i = 0; i < dateSelect.range.length; i++) {
+    if (dateSelect.range[i].getFullYear() === dateSelect.currentYear) {
+      filteredDates.push(dateSelect.range[i])
+    }
+  }
 
-      for (var i = 0; i < arrayFromSet.length; i++) {
-        let month = arrayFromSet[i]
-        let monthNamed = arrayFromSetNamed[i]
-        let groupedObject = new Object
+  // Add values to sets - dedupe
+  for (let month of filteredDates) {
+    optionMonthSet.add(month.getMonth())
+    optionMonthNameSet.add(month.toLocaleString("en", {month: "long"}))
+  }
 
-        groupedObject.monthNumber = month
-        groupedObject.monthNamed = monthNamed
-        groupedMonthObjects.push(groupedObject)
-      }
+  let arrayFromSet = [...optionMonthSet]
+  let arrayFromSetNamed = [...optionMonthNameSet]
 
-      // loop set to create filtered options
-      for (let optionMonth of groupedMonthObjects) {
-        let createOption = document.createElement('option')
-        let createText = document.createTextNode(optionMonth.monthNamed)
-        let select1HTML = document.getElementById('selectID2')
+  for (var i = 0; i < arrayFromSet.length; i++) {
+    let month = arrayFromSet[i]
+    let monthNamed = arrayFromSetNamed[i]
+    let groupedObject = new Object
 
-        createOption.setAttribute('value', optionMonth.monthNumber)
-        createOption.appendChild(createText)
-        select1HTML.appendChild(createOption)
-      }
+    groupedObject.monthNumber = month
+    groupedObject.monthNamed = monthNamed
+    groupedMonthObjects.push(groupedObject)
+  }
 
-      // If current year exists then set correct option
-      for (let thisOption of selectID2) {
-        if (dateSelect.currentMonth === parseFloat(thisOption.getAttribute('value'))) {
-          thisOption.setAttribute('selected', 'selected')
-        }
-      }
+  // loop set to create filtered options
+  for (let optionMonth of groupedMonthObjects) {
+    let createOption = document.createElement('option')
+    let createText = document.createTextNode(optionMonth.monthNamed)
+    let select1HTML = document.getElementById('selectID2')
+
+    createOption.setAttribute('value', optionMonth.monthNumber)
+    createOption.appendChild(createText)
+    select1HTML.appendChild(createOption)
+  }
+
+  // If current year exists then set correct option
+  for (let thisOption of selectID2) {
+    if (dateSelect.currentMonth === parseFloat(thisOption.getAttribute('value'))) {
+      thisOption.setAttribute('selected', 'selected')
+    }
+  }
+  
 }
 
 
@@ -263,6 +274,7 @@ let buildMonths = function(dateSelect) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildWrap; });
 let buildWrap = function(dateSelect) {
+
     let createWrap = document.createElement('form')
     createWrap.setAttribute('class', 'columns')
 
@@ -284,8 +296,11 @@ let buildWrap = function(dateSelect) {
       createSpan.appendChild(createSelect)
       createWrap.appendChild(createP)
       dateSelect.addListener(createSelect)
+
     }
+
     document.body.appendChild(createWrap)
+
   }
 
 
@@ -296,12 +311,14 @@ let buildWrap = function(dateSelect) {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return buildYears; });
 let buildYears = function(dateSelect) {
+
   //Create set then populate
   let optionYearSet = new Set()
   for (let date in dateSelect.range) {
     let yearFromSet = dateSelect.range[date].getFullYear()
     optionYearSet.add(yearFromSet)
   }
+
   // loop set to create filtered options
   for (let optionYear of optionYearSet) {
 
@@ -314,12 +331,14 @@ let buildYears = function(dateSelect) {
     select2HTML.appendChild(createOption)
 
   }
+
   // If current year exists then set correct option
   for (let variable of selectID3) {
     if (dateSelect.currentYear === parseFloat(variable.getAttribute('value'))) {
       variable.setAttribute('selected', 'selected')
     }
   }
+
 }
 
 
