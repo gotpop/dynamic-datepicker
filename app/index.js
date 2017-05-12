@@ -24,7 +24,8 @@ import createDateRange from './date-class'
 
 let myDate = new Date()
 let today = new createDateRange(myDate)
-// today.buildWrap()
+today.makeRange()
+// today.buildDOM()
 
 
 

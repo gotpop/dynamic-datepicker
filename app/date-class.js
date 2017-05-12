@@ -16,7 +16,7 @@ export default class createDateRange {
       this.range.push(day)
     }
     console.log('Make range not war', this)
-    // this.buildDOM()
+    this.buildDOM()
   }
 
   buildWrap() {
@@ -87,100 +87,100 @@ export default class createDateRange {
       }
 
   }
-  //
-  // buildMonths() {
-  //
-  //     //Create sets and array
-  //     let optionMonthSet = new Set()
-  //     let optionMonthNameSet = new Set()
-  //     let filteredDates = new Array
-  //     let groupedMonthObjects = new Array
-  //
-  //     // Filter dates to correct year 666
-  //     for (let i = 0; i < this.range.length; i++) {
-  //       if (this.range[i].getFullYear() === this.currentYear) {
-  //         filteredDates.push(this.range[i])
-  //       }
-  //     }
-  //     // Add values to sets - dedupe
-  //     for (let month of filteredDates) {
-  //       optionMonthSet.add(month.getMonth())
-  //       optionMonthNameSet.add(month.toLocaleString("en", {month: "long"}))
-  //     }
-  //     let arrayFromSet = [...optionMonthSet]
-  //     let arrayFromSetNamed = [...optionMonthNameSet]
-  //
-  //     for (var i = 0; i < arrayFromSet.length; i++) {
-  //       let month = arrayFromSet[i]
-  //       let monthNamed = arrayFromSetNamed[i]
-  //       let groupedObject = new Object
-  //
-  //       groupedObject.monthNumber = month
-  //       groupedObject.monthNamed = monthNamed
-  //       groupedMonthObjects.push(groupedObject)
-  //     }
-  //
-  //     // loop set to create filtered options
-  //     for (let optionMonth of groupedMonthObjects) {
-  //       let createOption = document.createElement('option')
-  //       let createText = document.createTextNode(optionMonth.monthNamed)
-  //       let select1HTML = document.getElementById('selectID2')
-  //
-  //       createOption.setAttribute('value', optionMonth.monthNumber)
-  //       createOption.appendChild(createText)
-  //       select1HTML.appendChild(createOption)
-  //     }
-  //
-  //     // If current year exists then set correct option
-  //     for (let thisOption of selectID2) {
-  //       if (this.currentMonth === parseFloat(thisOption.getAttribute('value'))) {
-  //         thisOption.setAttribute('selected', 'selected')
-  //       }
-  //     }
-  //
-  //   }
-  //
-  //   buildDays() {
-  //
-  //     //Create set then populate
-  //     let optionDaySet = new Set()
-  //     for (let date in this.range) {
-  //
-  //       if (this.currentMonth == this.range[date].getMonth()) {
-  //         let dayFromSet = this.range[date].getDate()
-  //         optionDaySet.add(dayFromSet)
-  //       }
-  //
-  //     }
-  //
-  //     // loop set to create filtered options
-  //     for (let optionDay of optionDaySet) {
-  //
-  //       let createOption = document.createElement('option')
-  //       let createText = document.createTextNode(optionDay)
-  //       let select0HTML = document.getElementById('selectID1')
-  //
-  //       createOption.setAttribute('value', optionDay)
-  //       createOption.appendChild(createText)
-  //       select0HTML.appendChild(createOption)
-  //
-  //     }
-  //     // If current year exists then set correct option
-  //     for (let thisOption of selectID1) {
-  //       if (this.currentDay === parseFloat(thisOption.getAttribute('value'))) {
-  //         thisOption.setAttribute('selected', 'selected')
-  //       }
-  //     }
-  //
-  //   }
-  //
-  //   buildDOM() {
-  //       document.body.innerHTML = ''
-  //       this.buildWrap()
-  //       this.buildYears()
-  //       this.buildMonths()
-  //       this.buildDays()
-  //       console.log(this)
-  //     }
+
+  buildMonths() {
+
+      //Create sets and array
+      let optionMonthSet = new Set()
+      let optionMonthNameSet = new Set()
+      let filteredDates = new Array
+      let groupedMonthObjects = new Array
+
+      // Filter dates to correct year 666
+      for (let i = 0; i < this.range.length; i++) {
+        if (this.range[i].getFullYear() === this.currentYear) {
+          filteredDates.push(this.range[i])
+        }
+      }
+      // Add values to sets - dedupe
+      for (let month of filteredDates) {
+        optionMonthSet.add(month.getMonth())
+        optionMonthNameSet.add(month.toLocaleString("en", {month: "long"}))
+      }
+      let arrayFromSet = [...optionMonthSet]
+      let arrayFromSetNamed = [...optionMonthNameSet]
+
+      for (var i = 0; i < arrayFromSet.length; i++) {
+        let month = arrayFromSet[i]
+        let monthNamed = arrayFromSetNamed[i]
+        let groupedObject = new Object
+
+        groupedObject.monthNumber = month
+        groupedObject.monthNamed = monthNamed
+        groupedMonthObjects.push(groupedObject)
+      }
+
+      // loop set to create filtered options
+      for (let optionMonth of groupedMonthObjects) {
+        let createOption = document.createElement('option')
+        let createText = document.createTextNode(optionMonth.monthNamed)
+        let select1HTML = document.getElementById('selectID2')
+
+        createOption.setAttribute('value', optionMonth.monthNumber)
+        createOption.appendChild(createText)
+        select1HTML.appendChild(createOption)
+      }
+
+      // If current year exists then set correct option
+      for (let thisOption of selectID2) {
+        if (this.currentMonth === parseFloat(thisOption.getAttribute('value'))) {
+          thisOption.setAttribute('selected', 'selected')
+        }
+      }
+
+    }
+
+    buildDays() {
+
+      //Create set then populate
+      let optionDaySet = new Set()
+      for (let date in this.range) {
+
+        if (this.currentMonth == this.range[date].getMonth()) {
+          let dayFromSet = this.range[date].getDate()
+          optionDaySet.add(dayFromSet)
+        }
+
+      }
+
+      // loop set to create filtered options
+      for (let optionDay of optionDaySet) {
+
+        let createOption = document.createElement('option')
+        let createText = document.createTextNode(optionDay)
+        let select0HTML = document.getElementById('selectID1')
+
+        createOption.setAttribute('value', optionDay)
+        createOption.appendChild(createText)
+        select0HTML.appendChild(createOption)
+
+      }
+      // If current year exists then set correct option
+      for (let thisOption of selectID1) {
+        if (this.currentDay === parseFloat(thisOption.getAttribute('value'))) {
+          thisOption.setAttribute('selected', 'selected')
+        }
+      }
+
+    }
+
+    buildDOM() {
+        document.body.innerHTML = ''
+        this.buildWrap()
+        this.buildYears()
+        this.buildMonths()
+        this.buildDays()
+        console.log(this)
+      }
 
 }
