@@ -11,7 +11,7 @@ require('file-loader?name=[name].[ext]!./bulma.css');
 // dateSelect.buildDate()
 
 
-import createDateRange from './date-class'
+import CreateDateRange from './date-class'
 
 
 // import {buildWrap} from './date-class'
@@ -23,7 +23,7 @@ import createDateRange from './date-class'
 
 
 let myDate = new Date()
-let today = new createDateRange(myDate)
+let today = new CreateDateRange(myDate)
 today.makeRange()
 // today.buildDOM()
 
@@ -37,4 +37,4 @@ today.makeRange()
 //
 // today.buildDOM()
 
-console.log(today)
+// console.log(today)
