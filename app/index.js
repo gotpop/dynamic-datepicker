@@ -13,6 +13,8 @@ require('file-loader?name=[name].[ext]!./bulma.css');
 
 import CreateDateRange from './date-class'
 
+import Build from './date-class'
+
 
 // import {buildWrap} from './date-class'
 
@@ -23,8 +25,23 @@ import CreateDateRange from './date-class'
 
 
 let myDate = new Date()
-let today = new CreateDateRange(myDate)
+let today = new Build(myDate)
 today.makeRange()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // today.buildDOM()
 
 
