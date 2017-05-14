@@ -147,7 +147,7 @@ export default class CreateDateRange {
       let optionDaySet = new Set()
       for (let date in this.range) {
 
-        if (this.currentMonth == this.range[date].getMonth()) {
+        if (this.currentMonth === this.range[date].getMonth()) {
           let dayFromSet = this.range[date].getDate()
           optionDaySet.add(dayFromSet)
         }
