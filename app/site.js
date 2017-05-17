@@ -11,12 +11,12 @@ earth.src =
 
 var ctx = document.getElementById('canvas').getContext('2d')
 
-let  radgrad = ctx.createRadialGradient(45,45,10,52,50,30);
-// ctx.translate(300, 300)
+var ctx = document.getElementById('canvas').getContext('2d')
+
+
+let  radgrad = ctx.createRadialGradient(245,245,50,252,250,200);
 radgrad.addColorStop(0, '#A7D30C');
 radgrad.addColorStop(0.9, '#019F62');
-radgrad.addColorStop(1, 'rgba(1,159,98,0)');
-
 ctx.fillStyle = radgrad;
 
 function init() {
@@ -27,9 +27,9 @@ function draw() {
 
   ctx.clearRect(0, 0, winWidth, winHeight) // clear canvas
   ctx.save()
-  ctx.translate(100, 300)
+  // ctx.translate(100, 300)
 
-  ctx.fillRect(0,0,150,150);
+  ctx.fillRect(0,0,winWidth, winHeight);
 
   var time = new Date()
  	ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds())
