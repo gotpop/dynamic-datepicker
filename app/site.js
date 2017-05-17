@@ -1,9 +1,10 @@
 var earth = new Image();
+let winWidth = window.innerWidth;
+let winHeight = window.innerHeight;
+
+
 
 function init() {
-
-    let winWidth = window.innerWidth;
-    let winHeight = window.innerHeight;
 
     let myCanvas = document.createElement("canvas");
 
@@ -24,7 +25,8 @@ function init() {
     document.body.appendChild(myCanvas);
 
 
-    earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png';
+    earth.src =
+        "http://upload.wikimedia.org/wikipedia/commons/d/d2/Svg_example_square.svg";
     window.requestAnimationFrame(draw);
 }
 
@@ -32,7 +34,7 @@ function init() {
 function draw() {
   var ctx = document.getElementById('canvas').getContext('2d');
 
-  ctx.clearRect(0, 0, 300, 300); // clear canvas
+  ctx.clearRect(0, 0, winWidth, winHeight); // clear canvas
   ctx.save();
   ctx.translate(150, 150);
 
