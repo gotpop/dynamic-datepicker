@@ -10,3 +10,8 @@ import './css/index.scss'
 /////////////////////////////////////////////////
 
 import DateFilter from './index.js'
+
+let view = document.getElementById('view')
+
+// let makeDateFilter = new DateFilter
+// view.appendChild(makeDateFilter)

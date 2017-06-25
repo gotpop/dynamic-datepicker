@@ -10,9 +10,7 @@
 */
 export default class DateFilter  {
 
-    constructor(type, id, name, label, attribs, options, value) {
-        super(type, id, name, label, attribs, options, value)
-
+    constructor() {
         this.maxDay = 300
         this.today = new Date()
         this.range = []

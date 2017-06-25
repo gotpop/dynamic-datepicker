@@ -1,11 +1,24 @@
-/*body {
-  min-height: 100vh;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: yellow;
+  color: rgba(#000, .6);
+  font-family: sans-serif;
+  padding: 2rem;
+}
+
+.site {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
-.column {
-  display: flex;
-  justify-content: center;
-}*/
+section {
+  background: rgba(0,0,0, .06);
+  padding: 2rem;
+  max-width: 600px;
+}
