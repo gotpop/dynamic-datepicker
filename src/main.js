@@ -9,4 +9,4 @@ import './css/index.scss'
 // Index
 /////////////////////////////////////////////////
 
-import './index.js'
+import DateFilter from './index.js'
