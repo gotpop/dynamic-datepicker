@@ -59,7 +59,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             favicon: "./app/img/favicon.ico",
             title: 'GotPop',
-            template: './app/my-index.ejs',
+            template: './app/index.html',
             inject: 'head'
         }),
         new CleanWebpackPlugin(['dist'])
