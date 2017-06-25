@@ -2,11 +2,15 @@
   "name": "datepicker",
   "version": "1.0.0",
   "description": "A dynamic date picker",
+  "main": "src/index.js",
+  "author": "GotPop",
+  "license": "ISC",
   "scripts": {
     "start": "node server.js",
     "dev": "webpack-dev-server --open --hot",
     "build": "webpack --progress --hide-modules",
     "deploy": "git add . && git commit -m 'Base' && git push origin master",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "webpack"
   },
   "dependencies": {
