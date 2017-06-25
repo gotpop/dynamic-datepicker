@@ -3,19 +3,20 @@
   "version": "1.0.0",
   "description": "A dynamic date picker",
   "scripts": {
-    "start": "webpack-dev-server",
-    "wp": "webpack --watch",
-    "gh": "git subtree push --prefix dist origin gh-pages",
-    "postinstall": "webpack-dev-server"
+    "start": "node server.js",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules",
+    "deploy": "git add . && git commit -m 'Base' && git push origin master",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "bulma": "^0.4.0",
+    "clean-webpack-plugin": "^0.1.16",
     "file-loader": "^0.11.1",
     "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^2.29.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
-  },
-  "devDependencies": {
+    "webpack-dev-server": "^2.4.1",
     "source-map-loader": "^0.2.1"
   }
 }
