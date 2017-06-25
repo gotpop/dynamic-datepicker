@@ -3,9 +3,9 @@ let HtmlWebpackPlugin = require('html-webpack-plugin')
 let CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-    entry: __dirname + '/app/index.js',
+    entry: __dirname + '/src/main.js',
     output: {
-        filename: 'app.bundle.js',
+        filename: 'src.bundle.js',
         path: __dirname + '/dist'
     },
     devServer: {
@@ -57,9 +57,9 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            favicon: "./app/img/favicon.ico",
+            favicon: "./src/img/favicon.ico",
             title: 'GotPop',
-            template: './app/index.html',
+            template: './src/index.html',
             inject: 'head'
         }),
         new CleanWebpackPlugin(['dist'])
