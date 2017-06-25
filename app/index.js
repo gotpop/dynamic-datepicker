@@ -4,4 +4,4 @@ require('file-loader?name=[name].[ext]!./favicon.ico');
 require('file-loader?name=[name].[ext]!./site.css');
 
 // // Import JS
-import './site.js'
+import './date.js'

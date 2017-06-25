@@ -1,6 +1,8 @@
 # Dynamic Datepicker
 A dynamic date picker that filters dates based on a max date of your choice.
 
-## Live example on GitHub pages
+## Live example
 
-https://gotpop.github.io/dynamic-datepicker/
+
+
+To develop locally run `npm run dev`
