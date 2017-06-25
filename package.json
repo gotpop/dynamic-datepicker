@@ -1,9 +1,9 @@
 {
-  "name": "datepicker",
+  "name": "dynamic-datepicker",
   "version": "1.0.0",
   "description": "A dynamic date picker",
   "main": "src/index.js",
-  "author": "GotPop",
+  "author": "gotpop",
   "license": "ISC",
   "scripts": {
     "start": "node server.js",
