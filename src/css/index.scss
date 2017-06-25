@@ -1,13 +1,12 @@
-* {
-  box-sizing: border-box;
-}
+/////////////////////////////////////////////////
+// Import
+/////////////////////////////////////////////////
 
-body {
-  background: yellow;
-  color: rgba(#000, .6);
-  font-family: sans-serif;
-  padding: 2rem;
-}
+@import "~bulma";
+
+/////////////////////////////////////////////////
+// Scss
+/////////////////////////////////////////////////
 
 .site {
   display: flex;
@@ -17,8 +16,12 @@ body {
   height: 100vh;
 }
 
-section {
+.view {
   background: rgba(0,0,0, .06);
   padding: 2rem;
   max-width: 600px;
+}
+
+.select {
+  margin: 1rem;
 }

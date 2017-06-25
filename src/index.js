@@ -1,12 +1,12 @@
 
 /**
-* Mutt Date filter
+* Date filter
 */
 
 'use strict'
 
 /**
-* Filter dates in Mutt
+* Filter dates
 */
 export default class DateFilter  {
 
@@ -31,18 +31,30 @@ export default class DateFilter  {
     renderField() {
 
         let dateWrapper = document.createElement('div')
+        let createYearSelectWrap = document.createElement('span')
+        let createMonthSelectWrap = document.createElement('span')
+        let createDaySelectWrap = document.createElement('span')
+
         let createYearSelect = document.createElement('select')
         let createMonthSelect = document.createElement('select')
         let createDaySelect = document.createElement('select')
 
-        dateWrapper.setAttribute('class', 'mutt-date-selector')
+        dateWrapper.setAttribute('class', 'select-wrap')
         createYearSelect.setAttribute('name', 'inception_date-year')
         createMonthSelect.setAttribute('name', 'inception_date-month')
         createDaySelect.setAttribute('name', 'inception_date-day')
 
-        dateWrapper.appendChild(createDaySelect)
-        dateWrapper.appendChild(createMonthSelect)
-        dateWrapper.appendChild(createYearSelect)
+        createDaySelectWrap.setAttribute('class', 'select')
+        createMonthSelectWrap.setAttribute('class', 'select')
+        createYearSelectWrap.setAttribute('class', 'select')
+
+        createDaySelectWrap.appendChild(createDaySelect)
+        createMonthSelectWrap.appendChild(createMonthSelect)
+        createYearSelectWrap.appendChild(createYearSelect)
+
+        dateWrapper.appendChild(createDaySelectWrap)
+        dateWrapper.appendChild(createMonthSelectWrap)
+        dateWrapper.appendChild(createYearSelectWrap)
 
         function getValuesAndBuild() {
             this.setSelectedValues(createDaySelect, createMonthSelect, createYearSelect)
@@ -192,12 +204,6 @@ export default class DateFilter  {
         this.currentYear = parseFloat(createYearSelect.options[createYearSelect.selectedIndex].value)
         this.currentMonth = parseFloat(createMonthSelect.options[createMonthSelect.selectedIndex].value)
         this.currentDay = parseFloat(createDaySelect.options[createDaySelect.selectedIndex].value)
-    }
-
-    buildDate(createDaySelect, createMonthSelect, createYearSelect, dateWrapper) {
-        this.buildDays(createDaySelect, dateWrapper)
-        this.buildMonths(createMonthSelect, dateWrapper)
-        this.buildYears(createYearSelect, dateWrapper)
     }
 
 }
