@@ -1,6 +1,6 @@
 {
   "name": "dynamic-datepicker",
-  "version": "1.0.01",
+  "version": "1.0.02",
   "description": "A dynamic date picker",
   "main": "src/index.js",
   "author": "gotpop",
