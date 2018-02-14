@@ -1,7 +1,7 @@
 # Dynamic Datepicker
 A dynamic date picker that filters dates based on a max date.
 
-## Live example
+## Live example on Heroku
 
 https://gp-dynamic-datepicker.herokuapp.com
 
