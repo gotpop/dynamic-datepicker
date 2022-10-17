@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Date picker</title>
     <link rel="stylesheet" href="./scss/index.scss" />
     <script type="module" defer src="./main.js"></script>
   </head>
-  <nav class="nav has-shadow">
-    <div class="container">
-      <div class="nav-left">
-        <a href="#/" class="nav-item nav-item-logo is-tab">
-          <span>Dynamic Datepicker</span>
-        </a>
-      </div>
-      <div class="nav-right">
-        <a href="https://github.com/gotpop/dynamic-datepicker" class="nav-item nav-item-github is-tab">
-          <div>View project on GitHub</div>
-        </a>
-      </div>
-    </div>
-  </nav>
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+        </a>
+      </div>
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item"> Dynamic Datepicker </a>
+        </div>
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a href="https://github.com/gotpop/dynamic-datepicker" class="button is-secondary">
+                <div>View project on GitHub</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
     <div class="site">
       <section id="view" class="view"></section>
     </div>
