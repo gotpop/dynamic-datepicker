@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "parcel src/index.html",
-    "build": "parcel build src/index.html",
-    "open": "parcel src/index.html --open"
+    "start": "parcel src/html/index.html",
+    "build": "parcel build src/html/index.html",
+    "open": "parcel src/html/index.html --open"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "2.7.0",
