@@ -3,7 +3,7 @@ A dynamic date picker that filters dates based on a max date.
 
 ## Live example on Vercel
 
-https://gp-dynamic-datepicker.herokuapp.com
+https://dynamic-datepicker.vercel.app
 
 ## Getting started
 
