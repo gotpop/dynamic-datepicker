@@ -10,8 +10,8 @@ https://dynamic-datepicker.vercel.app
 ## Getting started
 
 ```js
-const view = document.getElementById("view");
-const makeDateFilter = new DateFilter().renderField();
+const view = document.getElementById("view")
+const makeDateFilter = new DateFilter().renderField()
 
-view.appendChild(makeDateFilter);
+view.appendChild(makeDateFilter)
 ```
